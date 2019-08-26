@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Minecraft Font';
+    src: url('../fonts/minecraft-webfont.woff2') format('woff2'),
+         url('../fonts/minecraft-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+	margin: auto;
+	background-color: black;
+
+	background-image: url("../images/background_title_game.png");
+	background-repeat: repeat;
+}
+
+#playerPosition {
+	font-family: "Minecraft Font";
+	font-size: 18pt;
+	color:black;
+	position: absolute;
+	padding-left: 20px;
+	z-index: 1;
+}

@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Minecraft Font';
+    src: url('../fonts/minecraft-webfont.woff2') format('woff2'),
+         url('../fonts/minecraft-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+html, body {
+	margin: auto;
+	background-color: black;
+	
+	font-family: "Minecraft Font";
+
+	background-image: url("../images/background_title.png");
+	background-repeat: repeat;
+}
+
+p, a {
+	color: white;
+	text-decoration: none;
+	font-size: 16pt;
+}
+
+#title {
+	text-align: center;
+	font-size: 54pt;
+	margin-top: 128px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#subtitle {
+	text-align: center;
+	margin-top: 0;
+	padding-top: 0;
+	margin-bottom: 172px;
+	color: yellow;
+}
+
+#copyright {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	font-size: 12pt;
+}
+
+div {
+	margin: auto;
+	text-align: center;
+}
+
+button {
+	font-family: "Minecraft Font";
+	font-size: 16pt;
+	color:white;
+	text-decoration: none;
+
+	width: 600px;
+	height: 60px;
+
+	margin-bottom: 10px;
+	padding: 0;
+	
+	border: none;
+
+	background: url(../images/button.png) no-repeat;
+	background-size: auto;
+}
+
+button:hover {
+	color: lemonchiffon;
+	background: url(../images/button_hover.png) no-repeat;
+}

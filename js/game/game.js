@@ -1,0 +1,92 @@
+// World parameters
+var world_width = 256;
+var world_height = 128;
+
+var world = new World(world_width, world_height);
+
+
+// Player paramaters
+var player_x = Math.round(Math.random() * 255);
+var player_y = 62;
+
+for (var y = 0; y < world.blocks[player_x].length; y++) {
+	if (!(typeof world.blocks[player_x][y + 1] == 'undefined')) {
+		if ((world.blocks[player_x][y] instanceof Air)
+		&& (world.blocks[player_x][y + 1] instanceof Air)) {
+			player_y = y;
+			break;
+		}
+	}
+}
+
+var player = new Player(player_x, player_y, 1, 2);
+
+
+// Viewfinder parameters
+var viewfinder_rows = 13;
+var viewfinder_cols = 15;
+var viewfinder_width = 1100;
+var viewfinder_height = 900;
+
+var viewfinder = new Viewfinder
+(
+	viewfinder_rows,
+	viewfinder_cols,
+	viewfinder_width,
+	viewfinder_height,
+	world,
+	player
+);
+
+// Map viewfinder
+// var viewfinder = new Viewfinder
+// (
+// 	world.blocks[0].length,
+// 	world.blocks.length,
+// 	1400,
+// 	700,
+// 	world,
+// 	player,
+// 	true
+// );
+
+
+window.addEventListener("keydown", function (event) {
+	if (event.defaultPrevented) {
+		// Do nothing if the event was already processed
+		return;
+	}
+	
+	switch (event.key) {
+	  	case "ArrowDown":
+			if (player.y - 1 >= 0) {
+				player.moveDown();
+				viewfinder.draw();
+			}
+			break;
+	  	case "ArrowUp":
+			if (player.y + 1 + player.height + 1 <= world.height) {
+				player.jump();
+				viewfinder.draw();
+			}
+			break;
+	  	case "ArrowLeft":
+			if (player.x - 1 >= 0) {
+				player.moveLeft();
+				viewfinder.draw();
+			}
+			break;
+	  	case "ArrowRight":
+			if (player.x + player.width + 1 <= world.width) {
+				player.moveRight();
+				viewfinder.draw();
+			}
+			break;
+	  	default:
+			// Quit when this doesn't handle the key event.
+			return;
+	}
+  
+	// Cancel the default action to avoid it being handled twice
+	event.preventDefault();
+  }, true);
