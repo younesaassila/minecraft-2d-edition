@@ -59,28 +59,24 @@ window.addEventListener("keydown", function (event) {
 	
 	switch (event.key) {
 	  	case "ArrowDown":
-			if (player.y - 1 >= 0) {
-				player.moveDown();
-				viewfinder.draw();
-			}
+			// Move down
+			player.move(0, -1, viewfinder, world);
+			viewfinder.draw();
 			break;
 	  	case "ArrowUp":
-			if (player.y + 1 + player.height + 1 <= world.height) {
-				player.jump();
-				viewfinder.draw();
-			}
+			// Move up
+			player.move(0, 1, viewfinder, world);
+			viewfinder.draw();
 			break;
 	  	case "ArrowLeft":
-			if (player.x - 1 >= 0) {
-				player.moveLeft();
-				viewfinder.draw();
-			}
+			// Move left
+			player.move(-1, 0, viewfinder, world);
+			viewfinder.draw();
 			break;
 	  	case "ArrowRight":
-			if (player.x + player.width + 1 <= world.width) {
-				player.moveRight();
-				viewfinder.draw();
-			}
+			// Move right
+			player.move(1, 0, viewfinder, world);
+			viewfinder.draw();
 			break;
 	  	default:
 			// Quit when this doesn't handle the key event.
