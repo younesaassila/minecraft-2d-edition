@@ -29,6 +29,13 @@ class Player {
 			&& !(typeof world.blocks[this.x][this.y + y + (this.height - 1)] == 'undefined')
 			&& (world.blocks[this.x][this.y + y] instanceof Air)
 			&& (world.blocks[this.x][this.y + y + (this.height - 1)] instanceof Air)) {
+				// The player cannot jump when in the air
+				if ((y > 0)
+				&& !(typeof world.blocks[this.x][this.y - 1] == 'undefined')
+				&& (world.blocks[this.x][this.y - 1] instanceof Air)) {
+					return;
+				}
+
 				this.updatePosition(this.x, this.y + y, viewfinder, world);
 				this.updatePositionText();
 			}
