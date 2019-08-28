@@ -43,7 +43,7 @@ p, a {
 	bottom: 0;
 	text-align: center;
 	font-size: 12pt;
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 div {
@@ -70,6 +70,6 @@ button {
 }
 
 button:hover {
-	color: lemonchiffon;
+	color: #ffffa0;
 	background: url(../images/button_hover.png) no-repeat;
 }

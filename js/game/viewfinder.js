@@ -64,7 +64,6 @@ class Viewfinder {
 
 				if (!(typeof this.world.blocks[x] == 'undefined')
 				&& !(typeof this.world.blocks[x][y] == 'undefined')) {
-					cell.innerHTML = "";
 					cell.style.backgroundColor = this.colorful ? this.world.blocks[x][y].color : "#3BB9FF";
 
 					cell.style.width = Math.floor(this.width / this.columnCount);
@@ -78,23 +77,7 @@ class Viewfinder {
 					cell.style.padding = "0";
 					
 					if (this.world.blocks[x][y].texture != null && this.colorful != true) {
-						var image = document.createElement("img");
-						
-						image.src = this.world.blocks[x][y].texture;
-						image.style.imageRendering = "pixelated";
-						image.style.imageRendering = "crisp-edges";
-
-						image.style.width = this.width / this.columnCount + "px";
-						image.style.height = this.height / this.rowCount + "px";
-
-						image.style.padding = "0";
-						image.style.margin = "auto";
-						image.style.display = "block";
-						image.style.position = "relative";
-						image.style.left = "0px";
-						image.style.top = "0px";
-						
-						cell.appendChild(image);
+						this.setTexture(cell, this.world.blocks[x][y].texture);
 					}
 				}
 			}
@@ -106,12 +89,45 @@ class Viewfinder {
 				if ((this.player.y >= this.y) && (this.player.y < this.y + this.rowCount)) {
 					var x = this.player.x - this.x;
 					var y = this.player.y - this.y;
+
+					var topCell = this.rows[(this.rowCount - 1) - y - 1][x];
+					var bottomCell = this.rows[(this.rowCount - 1) - y][x];
 	
-					this.rows[(this.rowCount - 1) - y - 1][x].style.backgroundColor = this.player.topColor;
-					this.rows[(this.rowCount - 1) - y][x].style.backgroundColor = this.player.bottomColor;
+					topCell.style.backgroundColor = this.colorful ? this.player.topColor : "#3BB9FF";
+					bottomCell.style.backgroundColor = this.colorful ? this.player.bottomColor : "#3BB9FF";
+
+					if ((this.player.topTexture != null)
+					&& (this.player.bottomTexture != null)
+					&& (this.colorful != true)) {
+						this.setTexture(topCell, this.player.topTexture);
+						this.setTexture(bottomCell, this.player.bottomTexture);
+					}
 				}
 			}
 		}
+	}
+
+	setTexture(cell, texture) {
+		cell.innerHTML = '';
+
+		var image = document.createElement("img");
+		image.src = texture;
+		image.style.imageRendering = "pixelated";
+		image.style.imageRendering = "crisp-edges";
+
+		image.style.width = this.width / this.columnCount + "px";
+		image.style.height = this.height / this.rowCount + "px";
+
+		image.style.padding = "0";
+		image.style.margin = "auto";
+		image.style.display = "block";
+		image.style.position = "relative";
+		image.style.left = "0px";
+		image.style.top = "0px";
+
+		image.ondragstart = function() { return false; };
+		
+		cell.appendChild(image);
 	}
 
 	getCameraPositionX() {

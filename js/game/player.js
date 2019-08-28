@@ -6,8 +6,12 @@ class Player {
 		this.width = width;
 		this.height = height;
 
+		// Used when 'no texture' mode is enabled
 		this.topColor = "red";
 		this.bottomColor = "red";
+		
+		this.topTexture = "images/entities/player/top.png";
+		this.bottomTexture = "images/entities/player/bottom.png";
 
 		this.positionText = document.getElementById("playerPosition");
 		this.updatePositionText();
@@ -21,7 +25,6 @@ class Player {
 			&& (world.blocks[this.x + x][this.y] instanceof Air)
 			&& (world.blocks[this.x + x][this.y + 1] instanceof Air)) {
 				this.updatePosition(this.x + x, this.y, viewfinder, world);
-				this.updatePositionText();
 			}
 
 			// Move up or down
@@ -37,7 +40,6 @@ class Player {
 				}
 
 				this.updatePosition(this.x, this.y + y, viewfinder, world);
-				this.updatePositionText();
 			}
 		}
 	}
@@ -56,8 +58,10 @@ class Player {
 			window.setTimeout(function() {
 				player.gravity(gravityForce, viewfinder, world);
 				viewfinder.draw();
-			}, 300);
+			}, 400);
 		}
+
+		this.updatePositionText();
 	}
 
 	gravity(force, viewfinder, world) {
@@ -65,12 +69,11 @@ class Player {
 			if (!(typeof world.blocks[this.x][this.y + force] == 'undefined')
 			&& (world.blocks[this.x][this.y + force] instanceof Air)) {
 				this.updatePosition(this.x, this.y + force, viewfinder, world);
-				this.updatePositionText();
 			}
 		}
 	}
 
 	updatePositionText() {
-		this.positionText.innerHTML = `Position – X: ${this.x}, Y: ${this.y}`;
+		this.positionText.innerHTML = `Position: ${this.x}, ${this.y}`;
 	}
 }
