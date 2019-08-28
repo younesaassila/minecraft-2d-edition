@@ -22,11 +22,15 @@ for (var y = 0; y < world.blocks[player_x].length; y++) {
 var player = new Player(player_x, player_y, 1, 2);
 
 
+// Viewport
+var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
 // Viewfinder parameters
-var viewfinder_rows = 13;
-var viewfinder_cols = 15;
-var viewfinder_width = 1100;
-var viewfinder_height = 900;
+var viewfinder_width = Math.floor(viewportWidth / 100) * 100;
+var viewfinder_height = Math.floor(viewportHeight / 100) * 100;
+var viewfinder_rows = viewfinder_height / 100;
+var viewfinder_cols = viewfinder_width / 100;
 
 var viewfinder = new Viewfinder
 (

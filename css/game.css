@@ -14,6 +14,17 @@ body {
 	background-repeat: repeat;
 }
 
+td {
+	z-index: 0;
+}
+
+td > img:hover {
+	outline-style: solid;
+	outline-color: rgba(0, 0, 0, 0.4);
+	outline-width: 1px;
+	outline-offset: -1px;
+}
+
 #playerPosition {
 	font-family: "Minecraft Font";
 	font-size: 16pt;

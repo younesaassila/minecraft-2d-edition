@@ -75,7 +75,7 @@ class Viewfinder {
 					cell.style.maxHeight = cell.style.height;
 
 					cell.style.padding = "0";
-					
+
 					if (this.world.blocks[x][y].texture != null && this.colorful != true) {
 						this.setTexture(cell, this.world.blocks[x][y].texture);
 					}
@@ -132,7 +132,7 @@ class Viewfinder {
 
 	getCameraPositionX() {
 		// The number of blocks between the player and the side of the screen
-		var spacing = 4;
+		var spacing = Math.floor((this.columnCount - this.player.width) / 3);
 
 		if (this.player != null) {
 			// The player is too close to the right of the screen
@@ -161,12 +161,14 @@ class Viewfinder {
 			else {
 				return this.x;
 			}
+		} else {
+			return this.x;
 		}
 	}
 
 	getCameraPositionY() {
 		// The number of blocks between the player and the side of the screen
-		var spacing = 4;
+		var spacing = Math.floor((this.rowCount - this.player.height) / 3);
 
 		if (this.player != null) {
 			// The player is too close to the bottom of the screen
@@ -195,6 +197,8 @@ class Viewfinder {
 			else {
 				return this.y;
 			}
+		} else {
+			return this.x;
 		}
 	}
 }
