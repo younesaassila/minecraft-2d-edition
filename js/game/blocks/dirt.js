@@ -1,5 +1,5 @@
 class Dirt extends Block {
 	constructor() {
-		super("dirt.png", "#7d6338");
+		super("dirt.png", "#7d6338", 0.5);
 	}
 }
