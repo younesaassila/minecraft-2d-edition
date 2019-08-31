@@ -14,6 +14,8 @@ html, body {
 
 	background-image: url("../images/background_title.png");
 	background-repeat: repeat;
+
+	overflow: hidden;
 }
 
 p, a {
@@ -30,12 +32,34 @@ p, a {
 	padding-bottom: 0;
 }
 
+@keyframes bounce {
+	from {transform: scale(1, 1);}
+	to {transform: scale(1.06, 1.06);}
+}
+
+#subtitle-div {
+	transform: rotate(-20deg);
+}
+
 #subtitle {
-	text-align: center;
-	margin-top: 0;
-	padding-top: 0;
+	position: relative;
+	left: 160px;
+	top: 20px;
+
+	margin-top: 5px;
 	margin-bottom: 172px;
+	padding-top: 0;
+
+	text-align: center;
+	text-shadow: 0px 0px 5px black;
+	
 	color: yellow;
+	
+	animation-name: bounce;
+	animation-duration: 0.5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
 }
 
 #copyright {
@@ -46,7 +70,7 @@ p, a {
 	margin-left: 25px;
 }
 
-div {
+#button-div {
 	margin: auto;
 	text-align: center;
 }

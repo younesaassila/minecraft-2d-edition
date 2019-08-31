@@ -101,7 +101,7 @@ class World {
 
 				var random = Math.random();
 
-				if (x % 5 == 0 && random < 0.1) {
+				if (x % 5 == 0 && random < 0.15) {
 					new Tree(x, y + 1, this.blocks);
 				}
 			}

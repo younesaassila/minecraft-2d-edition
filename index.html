@@ -2,21 +2,23 @@
 <html>
 	<head>
 		<title>Minecraft: 2D EDITION</title>
-		<link href="css/title_screen.css" rel="stylesheet">
+		<link href="css/menu_screen.css" rel="stylesheet">
 		<meta charset="UTF-8">
 		
 	</head>
 	<body>
-		<audio id="audioSource" autoplay loop src="audio/title_screen.mp3"></audio>
+		<audio id="audioSource" autoplay loop src="audio/menu_screen.mp3"></audio>
 		<p id="title">Minecraft</p>
-		<p id="subtitle">2D EDITION</p>
-		<div>
+		<div id="subtitle-div">
+			<p id="subtitle">Now in 2D!</p>
+		</div>
+		<div id="button-div">
 			<button onclick="goToURL('game.html')">Play</button><br>
 			<button onclick="" disabled>Options...</button><br>
-			<button onclick="goToURL('about.html')">About</button>
+			<button onclick="goToURL('about.html')" disabled>About</button>
 		</div>
 		<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang or Microsoft.</p>
 
-		<script src="js/title_screen.js"></script>
+		<script src="js/menu_screen.js"></script>
 	</body>
 </html>
