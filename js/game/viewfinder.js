@@ -1,122 +1,137 @@
 class Viewfinder {
-	constructor(rowCount, columnCount, width, height, world, player, colorful = false) {
-		// Variables used for the table creation
-		this.rowCount = rowCount;
-		this.columnCount = columnCount;
-
+	/**
+	 * Constructor of the Viewfinder class.
+	 * @param {number} width The width of the table.
+	 * @param {number} height The height of the table.
+	 * @param {number} rows The number of rows the table should countain.
+	 * @param {number} cols The number of columns the table should countain.
+	 * @param {boolean} noTexture If true, the blocks' texture will not be loaded.
+	 * @param {boolean} debugMode If true, sets the border width of table cells
+	 * to 1 pixel and logs debug information to the console.
+	 */
+	constructor(width, height, rows, cols, noTexture = false, debugMode = false) {
 		this.width = width;
 		this.height = height;
-
-		// Coordinates of the viewfinder (starting from the bottom left)
+		this.rows = rows;
+		this.cols = cols;
+		this.noTexture = noTexture;
+		this.debugMode = debugMode;
+		
 		this.x = 0;
 		this.y = 0;
-
-		this.world = world;
-		this.player = player;
-		this.colorful = colorful;
 
 		this.createTable();
 		this.draw();
 	}
 
 	createTable() {
-		this.rows = new Array(this.rowCount);
+		var body = document.body;
 
-		var body = document.body,
-			tbl  = document.createElement("table");
-		tbl.style.width  = this.width.toString() + "px";
-		tbl.style.height = this.height.toString() + "px";
-		tbl.style.tableLayout = "fixed";
-		tbl.style.border = "0px";
-		tbl.style.borderCollapse = "collapse";
+		var table = document.createElement("table");
+		table.style.width  = `${this.width.toString()}px`;
+		table.style.height = `${this.height.toString()}px`;
+		table.style.border = "0px";
+		table.style.borderCollapse = "collapse";
+		table.style.tableLayout = "fixed";
+		
+		this.cells = new Array(this.rows);
 		
 		// Foreach row in the viewfinder
-		for (var r = 0; r < this.rowCount; r++) {
-			var tr = tbl.insertRow();
+		for (var row = 0; row < this.rows; row++) {
+			var tr = table.insertRow();
 
-			this.rows[r] = new Array(this.columnCount);
+			this.cells[row] = new Array(this.cols);
 			
 			// Foreach column of the row in the viewfinder
-			for (var c = 0; c < this.columnCount; c++){
+			for (var col = 0; col < this.cols; col++){
 				var td = tr.insertCell();
-					td.style.border = "0px dotted black"
+					td.style.border = this.debugMode ? "1px dotted black" : "0px";
 					td.style.overflow = "hidden";
 
-				this.rows[r][c] = td;
+					td.style.width = Math.floor(this.width / this.cols);
+					td.style.minWidth = td.style.width;
+					td.style.maxWidth = td.style.width;
+
+					td.style.height = Math.floor(this.height / this.rows);
+					td.style.minHeight = td.style.height;
+					td.style.maxHeight = td.style.height;
+
+					td.style.padding = "0";
+
+				this.cells[row][col] = td;
 			}
 		}
 		
-		body.appendChild(tbl);
+		body.appendChild(table);
 	}
 
 	draw() {
 		// Foreach row in the viewfinder
-		for (var row = 0; row < this.rows.length; row++) {
+		for (var row = 0; row < this.cells.length; row++) {
 			// Foreach column of the row in the viewfinder
-			for (var col = 0; col < this.rows[row].length; col++) {
-				var cell = this.rows[(this.rowCount - 1) - row][col];
+			for (var col = 0; col < this.cells[row].length; col++) {
+				var cell = this.cells[(this.rows - 1) - row][col];
 
 				this.x = this.getCameraPositionX();
 				this.y = this.getCameraPositionY();
 				
+				// Block coordinates
 				var x = col + this.x;
 				var y = row + this.y;
 
-				if (!(typeof this.world.blocks[x] == 'undefined')
-				&& !(typeof this.world.blocks[x][y] == 'undefined')) {
-					cell.style.backgroundColor = this.colorful ? this.world.blocks[x][y].color : "#3BB9FF";
+				cell.x = x;
+				cell.y = y;
 
-					cell.style.width = Math.floor(this.width / this.columnCount);
-					cell.style.minWidth = cell.style.width;
-					cell.style.maxWidth = cell.style.width;
-
-					cell.style.height = Math.floor(this.height / this.rowCount);
-					cell.style.minHeight = cell.style.height;
-					cell.style.maxHeight = cell.style.height;
-
-					cell.style.padding = "0";
-
-					if (this.world.blocks[x][y].texture != null && this.colorful != true) {
-						this.setTexture(cell, this.world.blocks[x][y].texture);
-					}
+				if (!(typeof world.blocks[x] == 'undefined')
+				&& !(typeof world.blocks[x][y] == 'undefined')) {
+					var block = world.blocks[x][y];
+					this.setBlock(cell, block);
 				}
 			}
 		}
 
 		// Draw the player
 		if (player != null) {
-			if ((this.player.x >= this.x) && (this.player.x < this.x + this.columnCount)) {
-				if ((this.player.y >= this.y) && (this.player.y < this.y + this.rowCount)) {
-					var x = this.player.x - this.x;
-					var y = this.player.y - this.y;
+			if ((player.x >= this.x) && (player.x < this.x + this.cols)) {
+				if ((player.y >= this.y) && (player.y < this.y + this.rows)) {
+					var x = player.x - this.x;
+					var y = player.y - this.y;
 
-					var topCell = this.rows[(this.rowCount - 1) - y - 1][x];
-					var bottomCell = this.rows[(this.rowCount - 1) - y][x];
+					var topCell = this.cells[(this.rows - 1) - y - 1][x];
+					var bottomCell = this.cells[(this.rows - 1) - y][x];
 	
-					topCell.style.backgroundColor = this.colorful ? this.player.topColor : "#3BB9FF";
-					bottomCell.style.backgroundColor = this.colorful ? this.player.bottomColor : "#3BB9FF";
+					topCell.style.backgroundColor = this.noTexture ? player.topColor : "#3BB9FF";
+					bottomCell.style.backgroundColor = this.noTexture ? player.bottomColor : "#3BB9FF";
 
-					if ((this.player.topTexture != null)
-					&& (this.player.bottomTexture != null)
-					&& (this.colorful != true)) {
-						this.setTexture(topCell, this.player.topTexture);
-						this.setTexture(bottomCell, this.player.bottomTexture);
+					if ((player.topTexture != null)
+					&& (player.bottomTexture != null)
+					&& (this.noTexture != true)) {
+						this.setTexture(topCell, player.topTexture);
+						this.setTexture(bottomCell, player.bottomTexture);
 					}
 				}
 			}
 		}
 	}
 
-	setTexture(cell, texture) {
-		cell.innerHTML = '';
+	setBlock(cell, block) {
+		cell.style.backgroundColor = this.noTexture ? block.color : '#3BB9FF';
 
+		if ((block.texture != null) && !(this.noTexture)) {
+			this.setTexture(cell, block.texture);
+		}
+	}
+
+	setTexture(cell, texture) {
+		cell.innerHTML = this.debugMode ? `X: ${cell.x} Y: ${cell.y}` : '';
+		
 		var image = document.createElement("img");
 		image.src = texture;
 		image.style.imageRendering = "pixelated";
 		image.style.imageRendering = "crisp-edges";
 
-		image.style.width = this.width / this.columnCount + "px";
-		image.style.height = this.height / this.rowCount + "px";
+		image.style.width = this.width / this.cols + "px";
+		image.style.height = this.height / this.rows + "px";
 
 		image.style.padding = "0";
 		image.style.margin = "auto";
@@ -126,32 +141,64 @@ class Viewfinder {
 		image.style.top = "0px";
 
 		image.ondragstart = function() { return false; };
+
+		image.addEventListener('mousedown', e => {
+			// Left click
+			if (e.button === 0) {
+				var cell = image.parentNode;
+
+				if (!(world.blocks[cell.x][cell.y] instanceof Air)
+				&& !(world.blocks[cell.x][cell.y] instanceof Water)) {
+					world.blocks[cell.x][cell.y] = new Air();
+					this.setBlock(cell, world.blocks[cell.x][cell.y]);
+
+					if (this.debugMode) {
+						console.log(`Destroyed block at X: ${cell.x} Y:${cell.y}`);
+					}
+				}
+			}
+			// Right click
+			else if (e.button === 2) {
+				var cell = image.parentNode;
+
+				if ((world.blocks[cell.x][cell.y] instanceof Air)
+				|| (world.blocks[cell.x][cell.y] instanceof Water)) {
+					// TODO: Implement block selection system for player.
+					world.blocks[cell.x][cell.y] = new Stone();
+					this.setBlock(cell, world.blocks[cell.x][cell.y]);
+
+					if (this.debugMode) {
+						console.log(`Placed block at X: ${cell.x} Y:${cell.y}`);
+					}
+				}
+			}
+		  });
 		
 		cell.appendChild(image);
 	}
 
 	getCameraPositionX() {
 		// The number of blocks between the player and the side of the screen
-		var spacing = Math.floor((this.columnCount - this.player.width) / 3);
+		var spacing = Math.floor((this.cols - player.width) / 3);
 
-		if (this.player != null) {
+		if (player != null) {
 			// The player is too close to the right of the screen
-			if (this.player.x + this.player.width + spacing > (this.x + this.columnCount)) {
+			if (player.x + player.width + spacing > (this.x + this.cols)) {
 				// Is there any more blocks on the right side of the screen?
-				if(!(typeof this.world.blocks[this.player.x + this.player.width + spacing - 1] == 'undefined')) {
+				if(!(typeof world.blocks[player.x + player.width + spacing - 1] == 'undefined')) {
 					// Yes there is. Get new viewfinder position on the x axis
-					return this.player.x + this.player.width + spacing - this.columnCount;
+					return player.x + player.width + spacing - this.cols;
 				} else {
 					return this.x;
 				}
 			}
 
 			// The player is too close to the left of the screen
-			else if (this.player.x - spacing < this.x) {
+			else if (player.x - spacing < this.x) {
 				// Is there any more blocks on the left side of the screen?
-				if(!(typeof this.world.blocks[this.player.x - spacing] == 'undefined')) {
+				if(!(typeof world.blocks[player.x - spacing] == 'undefined')) {
 					// Yes there is. Get new viewfinder position on the x axis
-					return this.player.x - spacing;
+					return player.x - spacing;
 				} else {
 					return this.x;
 				}
@@ -168,26 +215,26 @@ class Viewfinder {
 
 	getCameraPositionY() {
 		// The number of blocks between the player and the side of the screen
-		var spacing = Math.floor((this.rowCount - this.player.height) / 3);
+		var spacing = Math.floor((this.rows - player.height) / 3);
 
-		if (this.player != null) {
+		if (player != null) {
 			// The player is too close to the bottom of the screen
-			if (this.player.y - spacing < this.y) {
+			if (player.y - spacing < this.y) {
 				// Is there any more blocks on the bottom of the screen?
-				if(!(typeof this.world.blocks[this.player.y - spacing] == 'undefined')) {
+				if(!(typeof world.blocks[player.y - spacing] == 'undefined')) {
 					// Yes there is. Get new viewfinder position on the x axis
-					return this.player.y - spacing;
+					return player.y - spacing;
 				} else {
 					return this.y;
 				}
 			}
 
 			// The player is too close to the top of the screen
-			else if (this.player.y + this.player.height + spacing > this.y + this.rowCount) {
+			else if (player.y + player.height + spacing > this.y + this.rows) {
 				// Is there any more blocks on the top of the screen?
-				if(!(typeof this.world.blocks[this.player.y + this.player.height + spacing - 1] == 'undefined')) {
+				if(!(typeof world.blocks[player.y + player.height + spacing - 1] == 'undefined')) {
 					// Yes there is. Get new viewfinder position on the x axis
-					return this.player.y + this.player.height + spacing - this.rowCount;
+					return player.y + player.height + spacing - this.rows;
 				} else {
 					return this.y;
 				}

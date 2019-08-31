@@ -1,59 +1,73 @@
-// World parameters
-var world_width = 256;
-var world_height = 128;
+const parameters = new URLSearchParams(window.location.search);
 
-var world = new World(world_width, world_height);
+//#region World
 
+var worldWidth = 256;
+var worldHeight = 128;
 
-// Player paramaters
-var player_x = Math.round(Math.random() * 255);
-var player_y = 62;
+var world = new World(worldWidth, worldHeight);
 
-for (var y = 0; y < world.blocks[player_x].length; y++) {
-	if (!(typeof world.blocks[player_x][y + 1] == 'undefined')) {
-		if ((world.blocks[player_x][y] instanceof Air)
-		&& (world.blocks[player_x][y + 1] instanceof Air)) {
-			player_y = y;
+//#endregion
+
+//#region Player
+
+var playerWidth = 1;
+var playerHeight = 2;
+
+var playerX = Math.round(Math.random() * (worldWidth - playerWidth));
+var playerY = 62;
+
+// Adjusting the y coordinate location by looking for the first suitable spot
+// at x coordinate starting from the bottom.
+for (var y = 0; y < world.blocks[playerX].length; y++) {
+	if (!(typeof world.blocks[playerX][y + 1] == 'undefined')) {
+		if ((world.blocks[playerX][y] instanceof Air)
+		&& (world.blocks[playerX][y + 1] instanceof Air)) {
+			playerY = y;
 			break;
 		}
 	}
 }
 
-var player = new Player(player_x, player_y, 1, 2);
+var player = new Player(playerX, playerY, playerWidth, playerHeight);
 
+//#endregion
 
-// Viewport
-var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+//#region Viewfinder
+
+// Get the browser's viewport size.
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-// Viewfinder parameters
-var viewfinder_width = Math.floor(viewportWidth / 100) * 100;
-var viewfinder_height = Math.floor(viewportHeight / 100) * 100;
-var viewfinder_rows = viewfinder_height / 100;
-var viewfinder_cols = viewfinder_width / 100;
+var viewfinderWidth = parameters.get('viewfinderWidth') || Math.floor(viewportWidth / 100) * 100;
+var viewfinderHeight = parameters.get('viewfinderHeight') || Math.floor(viewportHeight / 100) * 100;
+var viewfinderRows = parameters.get('viewfinderRows') || viewfinderHeight / 100;
+var viewfinderCols = parameters.get('viewfinderCols') || viewfinderWidth / 100;
 
-var viewfinder = new Viewfinder
-(
-	viewfinder_rows,
-	viewfinder_cols,
-	viewfinder_width,
-	viewfinder_height,
-	world,
-	player
-);
+if (parameters.get('map') == 'true') {
+	// Map Viewfinder
+	var viewfinder = new Viewfinder
+	(
+		viewfinderWidth,
+		viewfinderHeight,
+		world.blocks[0].length,
+		world.blocks.length,
+		true
+	);
+} else {
+	var viewfinder = new Viewfinder
+	(
+		viewfinderWidth,
+		viewfinderHeight,
+		viewfinderRows,
+		viewfinderCols
+	);
+}
 
-// Map viewfinder
-// var viewfinder = new Viewfinder
-// (
-// 	world.blocks[0].length,
-// 	world.blocks.length,
-// 	1400,
-// 	700,
-// 	world,
-// 	player,
-// 	true
-// );
+//#endregion
 
+// Disable context menu.
+window.oncontextmenu = function () { return false; }
 
 window.addEventListener("keydown", function (event) {
 	if (event.defaultPrevented) {

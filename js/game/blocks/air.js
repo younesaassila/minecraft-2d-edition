@@ -1,5 +1,6 @@
 class Air extends Block {
 	constructor() {
-		super("air.png");
+		super();
+		super.setTexture('air.png');
 	}
 }

@@ -44,16 +44,14 @@ class Player {
 		}
 	}
 
-	updatePosition(x, y, viewfinder = null, world = null) {
+	updatePosition(x, y, viewfinder, world) {
 		this.x = x;
 		this.y = y;
 
 		var player = this;
 		var gravityForce = -1;
 
-		if ((world != null)
-		&& (viewfinder != null)
-		&& !(typeof world.blocks[this.x][this.y + gravityForce] == 'undefined')
+		if (!(typeof world.blocks[this.x][this.y + gravityForce] == 'undefined')
 		&& (world.blocks[this.x][this.y + gravityForce] instanceof Air)) {
 			window.setTimeout(function() {
 				player.gravity(gravityForce, viewfinder, world);

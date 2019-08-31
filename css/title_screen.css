@@ -70,6 +70,10 @@ button {
 }
 
 button:hover {
-	color: #ffffa0;
 	background: url(../images/button_hover.png) no-repeat;
+}
+
+button:disabled {
+	color: #969696;
+	background: url(../images/button_disabled.png) no-repeat;
 }

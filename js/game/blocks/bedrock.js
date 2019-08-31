@@ -1,5 +1,6 @@
 class Bedrock extends Block {
 	constructor() {
-		super("bedrock.png", "#454545");
+		super();
+		super.setTexture('bedrock.png', '#454545');
 	}
 }

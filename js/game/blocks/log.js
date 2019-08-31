@@ -1,5 +1,7 @@
 class Log extends Block {
 	constructor() {
-		super("log.png", "#4f4c25", 2.0);
+		super();
+		super.setTexture('log.png', '#4f4c25');
+		super.setHardness(2.0);
 	}
 }

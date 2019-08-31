@@ -1,5 +1,7 @@
 class Sand extends Block {
 	constructor() {
-		super("sand.png", "#f0eaa3", 0.5);
+		super();
+		super.setTexture('sand.png', '#f0eaa3');
+		super.setHardness(0.5);
 	}
 }

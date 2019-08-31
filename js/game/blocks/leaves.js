@@ -1,5 +1,7 @@
 class Leaves extends Block {
 	constructor() {
-		super("leaves.png", "#0aa146", 0.2);
+		super();
+		super.setTexture('leaves.png', '#0aa146');
+		super.setHardness(0.2);
 	}
 }

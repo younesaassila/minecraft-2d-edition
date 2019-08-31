@@ -1,5 +1,7 @@
 class Grass extends Block {
 	constructor() {
-		super("grass.png", "#00c264", 0.6);
+		super();
+		super.setTexture('grass.png', '#00c264');
+		super.setHardness(0.6);
 	}
 }

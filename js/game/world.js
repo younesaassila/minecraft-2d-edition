@@ -14,23 +14,36 @@ class World {
 	generateTerrain() {
 		this.blocks = new Array(this.width);
 
-		this.generator = new Simple1DNoise();
-		this.generator.setAmplitude(0.55);
-		this.generator.setScale(0.02);
+		this.bedrockGenerator = new Simple1DNoise();
+		this.bedrockGenerator.setAmplitude(0.8);
+		this.bedrockGenerator.setScale(0.25);
+
+		this.stoneGenerator = new Simple1DNoise();
+		this.stoneGenerator.setAmplitude(0.55);
+		this.stoneGenerator.setScale(0.02);
 
 		for (var x = 0; x < this.width; x++) {
 			this.blocks[x] = new Array(this.height);
+
+			// Bedrock is always generated at y = 0 and cannot generate at y > 5.
+			var bedrockMinimumHeight = 1;
+			var bedrockMaximumHeight = 5;
 
 			// Stone is always generated at y < 52 and cannot generate at y > 100.
 			var stoneMinimumHeight = 52;
 			var stoneMaximumHeight = 100;
 
-			var generatorValue = this.generator.getVal(x);
-			var height = Math.abs(stoneMaximumHeight - stoneMinimumHeight);
-			var stoneHeight = stoneMinimumHeight + Math.abs(generatorValue) * height;
+			var bedrockGeneratorValue = this.bedrockGenerator.getVal(x);
+			var stoneGeneratorValue = this.stoneGenerator.getVal(x);
+
+			var bedrockGenerationHeight = Math.abs(bedrockMaximumHeight - bedrockMinimumHeight);
+			var bedrockHeight = bedrockMinimumHeight + Math.abs(bedrockGeneratorValue) * bedrockGenerationHeight;
+
+			var stoneGenerationHeight = Math.abs(stoneMaximumHeight - stoneMinimumHeight);
+			var stoneHeight = stoneMinimumHeight + Math.abs(stoneGeneratorValue) * stoneGenerationHeight;
 
 			for (var y = 0; y < this.height; y++) {
-				if (y == 0) {
+				if (y <= bedrockHeight) {
 					this.blocks[x][y] = new Bedrock();
 				} else if (y <= stoneHeight) {
 					this.blocks[x][y] = new Stone();
@@ -77,7 +90,7 @@ class World {
 
 				// Generates a third block of dirt using perlin noise.
 				if (this.blocks[x][y - 3] != null) {
-					var value = this.generator.getVal(x);
+					var value = this.stoneGenerator.getVal(x);
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 3] instanceof Bedrock)) {
@@ -112,7 +125,7 @@ class World {
 
 				// Generates a third block of dirt using perlin noise.
 				if (this.blocks[x][y - 2] != null) {
-					var value = this.generator.getVal(x);
+					var value = this.stoneGenerator.getVal(x);
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 2] instanceof Bedrock)) {
