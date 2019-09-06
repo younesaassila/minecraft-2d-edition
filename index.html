@@ -7,18 +7,43 @@
 		
 	</head>
 	<body>
-		<audio id="audioSource" autoplay loop src="audio/menu_screen.mp3"></audio>
-		<p id="title">Minecraft</p>
-		<div id="subtitle-div">
-			<p id="subtitle">Now in 2D!</p>
+		<div id="main-container">
+			<!-- Background music audio source -->
+			<audio id="audioSource" autoplay loop src="audio/menu_screen.mp3"></audio>
+			<!-- Title and splash text -->
+			<p id="title">Minecraft</p>
+			<div id="splash-container">
+				<p id="splash">missingno</p>
+			</div>
+			<!-- Buttons -->
+			<div id="button-container">
+				<button onclick="goToURL('game.html')">Play</button><br>
+				<button onclick="showOptions()">Options...</button><br>
+				<button onclick="showAbout()">About</button>
+			</div>
+			<!-- Options modal -->
+			<div id="options-modal" class="modal">
+				<div class="modal-content">
+					<button onclick="hideOptions()" class="modal-content-close">&times;</button>
+					<p class="modal-content-title">Options</p>
+					<p style="color: yellow;">Coming soon!</p>
+				</div>
+			</div>
+			<!-- About modal -->
+			<div id="about-modal" class="modal">
+				<div class="modal-content">
+					<button onclick="hideAbout()" class="modal-content-close">&times;</button>
+					<p class="modal-content-title">About</p>
+					<p style="color: lightgreen;">Minecraft: 2D EDITION is a project I made for experimenting with Javascript and having fun!</p>
+					<p style="color: lightskyblue;">This project is not affiliated in any way with Mojang AB or Microsoft Inc.</p>
+					<p style="color: lightsalmon;">This project was made by Younes Aassila (@Yougi3 on GitHub). Thank you!</p>
+				</div>
+			</div>
+			<!-- Copyright label -->
+			<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang or Microsoft.</p>
 		</div>
-		<div id="button-div">
-			<button onclick="goToURL('game.html')">Play</button><br>
-			<button onclick="" disabled>Options...</button><br>
-			<button onclick="goToURL('about.html')" disabled>About</button>
-		</div>
-		<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang or Microsoft.</p>
 
+		<script src="js/splashes.js"></script>
 		<script src="js/menu_screen.js"></script>
 	</body>
 </html>

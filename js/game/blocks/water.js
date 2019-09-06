@@ -1,6 +1,7 @@
 class Water extends Block {
-	constructor() {
-		super();
+	constructor(x, y) {
+		super(x, y);
 		super.setTexture('water.png', '#1762ad');
+		super.onDestroy = function() {}
 	}
 }

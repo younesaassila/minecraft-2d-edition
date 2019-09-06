@@ -146,31 +146,16 @@ class Viewfinder {
 			// Left click
 			if (e.button === 0) {
 				var cell = image.parentNode;
+				world.blocks[cell.x][cell.y].onDestroy();
 
-				if (!(world.blocks[cell.x][cell.y] instanceof Air)
-				&& !(world.blocks[cell.x][cell.y] instanceof Water)) {
-					world.blocks[cell.x][cell.y] = new Air();
-					this.setBlock(cell, world.blocks[cell.x][cell.y]);
-
-					if (this.debugMode) {
-						console.log(`Destroyed block at X: ${cell.x} Y:${cell.y}`);
-					}
-				}
+				this.draw();
 			}
 			// Right click
 			else if (e.button === 2) {
 				var cell = image.parentNode;
+				world.blocks[cell.x][cell.y].onPlace();
 
-				if ((world.blocks[cell.x][cell.y] instanceof Air)
-				|| (world.blocks[cell.x][cell.y] instanceof Water)) {
-					// TODO: Implement block selection system for player.
-					world.blocks[cell.x][cell.y] = new Stone();
-					this.setBlock(cell, world.blocks[cell.x][cell.y]);
-
-					if (this.debugMode) {
-						console.log(`Placed block at X: ${cell.x} Y:${cell.y}`);
-					}
-				}
+				this.draw();
 			}
 		  });
 		

@@ -44,13 +44,13 @@ class World {
 
 			for (var y = 0; y < this.height; y++) {
 				if (y <= bedrockHeight) {
-					this.blocks[x][y] = new Bedrock();
+					this.blocks[x][y] = new Bedrock(x, y);
 				} else if (y <= stoneHeight) {
-					this.blocks[x][y] = new Stone();
+					this.blocks[x][y] = new Stone(x, y);
 				} else if (y <= 62) {
-					this.blocks[x][y] = new Water();
+					this.blocks[x][y] = new Water(x, y);
 				} else {
-					this.blocks[x][y] = new Air();
+					this.blocks[x][y] = new Air(x, y);
 				}
 			}
 		}
@@ -72,19 +72,19 @@ class World {
 			&& !(this.blocks[x][y] instanceof Bedrock)
 			&& (this.blocks[x][y] instanceof Stone)) {
 				// Generates a block of grass at the surface. 
-				this.blocks[x][y] = new Grass();
+				this.blocks[x][y] = new Grass(x, y);
 
 				// Generates a block of dirt underneath.
 				if (this.blocks[x][y - 1] != null) {
 					if (!(this.blocks[x][y - 1] instanceof Bedrock)) {
-						this.blocks[x][y - 1] = new Dirt();
+						this.blocks[x][y - 1] = new Dirt(x, y);
 					}
 				}
 
 				// Generates a second block of dirt.
 				if (this.blocks[x][y - 2] != null) {
 					if (!(this.blocks[x][y - 2] instanceof Bedrock)) {
-						this.blocks[x][y - 2] = new Dirt();
+						this.blocks[x][y - 2] = new Dirt(x, y);
 					}
 				}
 
@@ -94,7 +94,7 @@ class World {
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 3] instanceof Bedrock)) {
-							this.blocks[x][y - 3] = new Dirt();
+							this.blocks[x][y - 3] = new Dirt(x, y);
 						}
 					}
 				}
@@ -114,12 +114,12 @@ class World {
 			&& !(this.blocks[x][y] instanceof Bedrock)
 			&& (this.blocks[x][y] instanceof Stone)) {
 				// Generates a block of grass at the surface. 
-				this.blocks[x][y] = new Sand();
+				this.blocks[x][y] = new Sand(x, y);
 
 				// Generates a block of dirt underneath.
 				if (this.blocks[x][y - 1] != null) {
 					if (!(this.blocks[x][y - 1] instanceof Bedrock)) {
-						this.blocks[x][y - 1] = new Dirt();
+						this.blocks[x][y - 1] = new Dirt(x, y);
 					}
 				}
 
@@ -129,7 +129,7 @@ class World {
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 2] instanceof Bedrock)) {
-							this.blocks[x][y - 2] = new Dirt();
+							this.blocks[x][y - 2] = new Dirt(x, y);
 						}
 					}
 				}

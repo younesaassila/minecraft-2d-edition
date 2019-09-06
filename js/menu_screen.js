@@ -1,29 +1,35 @@
-var audioSource = document.getElementById("audioSource");
-audioSource.volume = 0.5;
-
+/**
+ * Sets the browser's location to the specified path.
+ * @param {string} path 
+ */
 function goToURL(path) {
 	location.href = path;
 }
 
-const subtitles = [
-	"Now in 2D!",
-	"Experience the new dimension!",
-	"Steve?",
-	"2D EDITION!",
-	"Perlin Noise Certified!",
-	"Made by Younes!",
-	"Blocks everywhere!",
-	"Hi, how may I help you?",
-	"Minecraft DD!",
-	"Minceraft!",
-	"Time to mine!",
-	"The cake is an unavailable item",
-	"Pshhh... Boom!",
-	"Creeper? Aw man!",
-	"Night time is a myth!",
-	"undefined"
-]
+function showOptions() {
+	var modal = document.getElementById("options-modal");
+	modal.style.display = "block";
+}
 
-var subtitle = document.getElementById("subtitle");
-var randomNumber = parseInt(Math.round(Math.random() * (subtitles.length - 1)));
-subtitle.innerHTML = subtitles[randomNumber];
+function hideOptions() {
+	var modal = document.getElementById("options-modal");
+	modal.style.display = "none";
+}
+
+function showAbout() {
+	var modal = document.getElementById("about-modal");
+	modal.style.display = "block";
+}
+
+function hideAbout() {
+	var modal = document.getElementById("about-modal");
+	modal.style.display = "none";
+}
+
+// Background audio management.
+var audioSource = document.getElementById("audioSource");
+audioSource.volume = 0.5;
+
+// Display a random splash text on the menu screen.
+var splash = document.getElementById("splash");
+splash.innerHTML = getSplashText();

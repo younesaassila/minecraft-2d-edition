@@ -1,6 +1,7 @@
 class Air extends Block {
-	constructor() {
-		super();
+	constructor(x, y) {
+		super(x, y);
 		super.setTexture('air.png');
+		super.onDestroy = function() {}
 	}
 }
