@@ -77,14 +77,14 @@ class World {
 				// Generates a block of dirt underneath.
 				if (this.blocks[x][y - 1] != null) {
 					if (!(this.blocks[x][y - 1] instanceof Bedrock)) {
-						this.blocks[x][y - 1] = new Dirt(x, y);
+						this.blocks[x][y - 1] = new Dirt(x, y - 1);
 					}
 				}
 
 				// Generates a second block of dirt.
 				if (this.blocks[x][y - 2] != null) {
 					if (!(this.blocks[x][y - 2] instanceof Bedrock)) {
-						this.blocks[x][y - 2] = new Dirt(x, y);
+						this.blocks[x][y - 2] = new Dirt(x, y - 2);
 					}
 				}
 
@@ -94,7 +94,7 @@ class World {
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 3] instanceof Bedrock)) {
-							this.blocks[x][y - 3] = new Dirt(x, y);
+							this.blocks[x][y - 3] = new Dirt(x, y - 3);
 						}
 					}
 				}
@@ -113,13 +113,13 @@ class World {
 			if ((this.blocks[x][y + 1] instanceof Water)
 			&& !(this.blocks[x][y] instanceof Bedrock)
 			&& (this.blocks[x][y] instanceof Stone)) {
-				// Generates a block of grass at the surface. 
+				// Generates a block of sand at the surface under water. 
 				this.blocks[x][y] = new Sand(x, y);
 
 				// Generates a block of dirt underneath.
 				if (this.blocks[x][y - 1] != null) {
 					if (!(this.blocks[x][y - 1] instanceof Bedrock)) {
-						this.blocks[x][y - 1] = new Dirt(x, y);
+						this.blocks[x][y - 1] = new Dirt(x, y - 1);
 					}
 				}
 
@@ -129,7 +129,7 @@ class World {
 
 					if (value < 0.3) {
 						if (!(this.blocks[x][y - 2] instanceof Bedrock)) {
-							this.blocks[x][y - 2] = new Dirt(x, y);
+							this.blocks[x][y - 2] = new Dirt(x, y - 2);
 						}
 					}
 				}

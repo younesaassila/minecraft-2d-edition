@@ -79,12 +79,13 @@ class Viewfinder {
 				var x = col + this.x;
 				var y = row + this.y;
 
-				cell.x = x;
-				cell.y = y;
-
 				if (!(typeof world.blocks[x] == 'undefined')
 				&& !(typeof world.blocks[x][y] == 'undefined')) {
 					var block = world.blocks[x][y];
+
+					cell.x = block.x;
+					cell.y = block.y;
+
 					this.setBlock(cell, block);
 				}
 			}
