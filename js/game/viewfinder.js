@@ -16,9 +16,9 @@ class Viewfinder {
 		this.cols = cols;
 		this.noTexture = noTexture;
 		this.debugMode = debugMode;
-		
-		this.x = 0;
-		this.y = 0;
+
+		this.x = player.x < (0 + cols) ? 0 : player.x > (world.width - cols) ? (world.width - cols) : 0;
+		this.y = player.y < (0 + rows) ? 0 : player.y > (world.height - rows) ? (world.height - rows) : 0;
 
 		this.createTable();
 		this.draw();
@@ -143,17 +143,17 @@ class Viewfinder {
 		image.ondragstart = function() { return false; };
 
 		image.addEventListener('mousedown', e => {
-			// Left click
+			// Left click: detroy block
 			if (e.button === 0) {
 				var cell = image.parentNode;
 				world.blocks[cell.x][cell.y].onDestroy();
 
 				this.draw();
 			}
-			// Right click
+			// Right click: place block
 			else if (e.button === 2) {
 				var cell = image.parentNode;
-				world.blocks[cell.x][cell.y].onPlace();
+				world.blocks[cell.x][cell.y].onReplace();
 
 				this.draw();
 			}

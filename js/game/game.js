@@ -14,7 +14,7 @@ var world = new World(worldWidth, worldHeight);
 var playerWidth = 1;
 var playerHeight = 2;
 
-var playerX = Math.round(Math.random() * (worldWidth - playerWidth));
+var playerX = parseInt(Math.random() * (worldWidth - playerWidth));
 var playerY = 62;
 
 // Adjusting the y coordinate location by looking for the first suitable spot
@@ -44,7 +44,9 @@ var viewfinderHeight = parameters.get('viewfinderHeight') || Math.floor(viewport
 var viewfinderRows = parameters.get('viewfinderRows') || viewfinderHeight / 100;
 var viewfinderCols = parameters.get('viewfinderCols') || viewfinderWidth / 100;
 
-if (parameters.get('map') == 'true') {
+var debugMode = parameters.get('debug') === 'true' || false;
+
+if (parameters.get('map') === 'true') {
 	// Map Viewfinder
 	var viewfinder = new Viewfinder
 	(
@@ -52,7 +54,8 @@ if (parameters.get('map') == 'true') {
 		viewfinderHeight,
 		world.blocks[0].length,
 		world.blocks.length,
-		true
+		true,
+		debugMode
 	);
 } else {
 	var viewfinder = new Viewfinder
@@ -60,7 +63,9 @@ if (parameters.get('map') == 'true') {
 		viewfinderWidth,
 		viewfinderHeight,
 		viewfinderRows,
-		viewfinderCols
+		viewfinderCols,
+		false,
+		debugMode
 	);
 }
 

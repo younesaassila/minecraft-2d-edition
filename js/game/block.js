@@ -51,10 +51,16 @@ class Block {
 	}
 
 	/**
-	 * Triggered when the player wants to place this block.
+	 * Triggered when the player wants to replace this block with another block.
 	 */
-	onPlace() {
-		// By default this function is empty.
-		world.blocks[this.x][this.y] = new Dirt(this.x, this.y);
+	onReplace() {
+		/**
+		 * By default, this method is empty as most block wouldn't allow replacement.
+		 * 
+		 * In order to allow block replacement on a certain type of block,
+		 * please overwrite this method in the appropriate extended class.
+		 * 
+		 * I.e.: super.onReplace = function() {}
+		 */
 	}
 }

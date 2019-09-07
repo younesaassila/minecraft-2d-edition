@@ -4,7 +4,6 @@
 		<title>Minecraft: 2D EDITION</title>
 		<link href="css/menu_screen.css" rel="stylesheet">
 		<meta charset="UTF-8">
-		
 	</head>
 	<body>
 		<div id="main-container">
@@ -17,32 +16,46 @@
 			</div>
 			<!-- Buttons -->
 			<div id="button-container">
-				<button onclick="goToURL('game.html')">Play</button><br>
-				<button onclick="showOptions()">Options...</button><br>
-				<button onclick="showAbout()">About</button>
+				<button class="minecraft-button" onclick="play()">Play</button><br>
+				<button class="minecraft-button" onclick="showOptions()">Options</button><br>
+				<button class="minecraft-button" onclick="showAbout()">About</button>
 			</div>
 			<!-- Options modal -->
-			<div id="options-modal" class="modal">
+			<div class="modal" id="options-modal">
 				<div class="modal-content">
+					<!-- Close button -->
 					<button onclick="hideOptions()" class="modal-content-close">&times;</button>
+					<!-- Modal's title -->
 					<p class="modal-content-title">Options</p>
-					<p style="color: yellow;">Coming soon!</p>
+					<!-- Display the entire map in the viewfinder -->
+					<label class="label-container" style="color: lightcyan;">Display the entire map in the viewfinder
+						<input type="checkbox" id="options-map-mode">
+						<span class="checkmark"></span>
+					</label><br>
+					<!-- Enable debug mode (very experimental!) -->
+					<label class="label-container" style="color: lightcyan;">Enable debug mode (very experimental!)
+						<input type="checkbox" id="options-debug-mode">
+						<span class="checkmark"></span>
+					</label>
 				</div>
 			</div>
 			<!-- About modal -->
-			<div id="about-modal" class="modal">
+			<div class="modal" id="about-modal">
 				<div class="modal-content">
+					<!-- Close button -->
 					<button onclick="hideAbout()" class="modal-content-close">&times;</button>
+					<!-- Modal's title -->
 					<p class="modal-content-title">About</p>
+					<!-- Modal's content -->
 					<p style="color: lightgreen;">Minecraft: 2D EDITION is a project I made for experimenting with Javascript and having fun!</p>
 					<p style="color: lightskyblue;">This project is not affiliated in any way with Mojang AB or Microsoft Inc.</p>
-					<p style="color: lightsalmon;">This project was made by Younes Aassila (@Yougi3 on GitHub). Thank you!</p>
+					<p style="color: lightsalmon;">This project was made by Younes Aassila (@Yougi3 on GitHub). Thank you for playing!</p>
 				</div>
 			</div>
 			<!-- Copyright label -->
-			<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang or Microsoft.</p>
+			<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang AB or Microsoft Inc.</p>
 		</div>
-
+		<!-- Scripts -->
 		<script src="js/splashes.js"></script>
 		<script src="js/menu_screen.js"></script>
 	</body>

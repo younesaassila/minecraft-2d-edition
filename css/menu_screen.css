@@ -32,11 +32,12 @@ html, body {
 	animation-timing-function: linear;
 }
 
-p, a {
+p, a, label {
 	color: white;
 	text-decoration: none;
 	font-size: 16pt;
 }
+
 
 /* Title and splash text */
 #title {
@@ -83,7 +84,7 @@ p, a {
 	text-align: center;
 }
 
-#button-container > button {
+.minecraft-button {
 	font-family: "Minecraft Font";
 	font-size: 16pt;
 	color:white;
@@ -97,17 +98,17 @@ p, a {
 	
 	border: none;
 
-	background: url(../images/button.png) no-repeat;
+	background: url(../images/gui/button.png) no-repeat;
 	background-size: auto;
 }
 
-#button-container > button:hover {
-	background: url(../images/button_hover.png) no-repeat;
+.minecraft-button:hover {
+	background: url(../images/gui/button_hover.png) no-repeat;
 }
 
-#button-container > button:disabled {
+.minecraft-button:disabled {
 	color: #969696;
-	background: url(../images/button_disabled.png) no-repeat;
+	background: url(../images/gui/button_disabled.png) no-repeat;
 }
 
 /* Footer */
@@ -120,9 +121,9 @@ p, a {
 }
 
 
-/* About modal */
+/* Modal view */
 .modal {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.62);
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -133,17 +134,19 @@ p, a {
 }
 
 .modal-content {
-	background-image: url("../images/background_title.png");
+	background-image: url(../images/background_title.png);
 	background-repeat: repeat;
 
-	box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.5);
-	border: 2px solid dimgray;
+	border: 2px solid rgb(80, 80, 80);
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+	position: relative;
 	margin: 15% auto;
 	padding: 15px;
-	width: 50%;
-
+	width: 40%;
+	
 	text-align: center;
-	position: relative;
 }
 
 .modal-content-title {
@@ -152,14 +155,60 @@ p, a {
 }
 
 .modal-content-close {
-	right: 10px;
-	top: 10px;
-	font-size: 24px;
 	position: absolute;
+	padding: 0;
 	width: 40px;
 	height: 40px;
-	text-decoration: none;
+	top: 10px;
+	right: 10px;
+
 	border: none;
-	background-color: red;
 	color: white;
+	background-image: url(../images/gui/close_button.png);
+	
+	font-size: 22px;
+	text-decoration: none;
+}
+
+.modal-content-close:hover {
+	background-image: url(../images/gui/close_button_hover.png);
+}
+
+.modal-content-close:disabled {
+	background-image: url(../images/gui/close_button_disabled.png);
+}
+
+
+/* Option checkbox */
+.label-container {
+	display: inline-block;
+	position: relative;
+	margin: 15px auto;
+
+	cursor: pointer;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.label-container input {
+	position: absolute;
+	opacity: 0;
+	height: 0;
+	width: 0;
+	cursor: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: -30px;
+	height: 20px;
+	width: 20px;
+	background-image: url(../images/gui/checkbox.png);
+}
+
+/* When the checkbox is checked, change the background image */
+.label-container input:checked ~ .checkmark {
+	background-image: url(../images/gui/checkbox_checked.png);
 }
