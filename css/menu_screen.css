@@ -1,10 +1,12 @@
 /* Imported fonts */
 @font-face {
-    font-family: 'Minecraft Font';
-    src: url('../fonts/minecraft-webfont.woff2') format('woff2'),
-         url('../fonts/minecraft-webfont.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
+	font-family: "Minecraft";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/minecraft_font.eot") format("eot"), 
+	     url("../fonts/minecraft_font.woff") format("woff"), 
+	     url("../fonts/minecraft_font.ttf") format("truetype"), 
+	     url("../fonts/minecraft_font.svg#Minecraft") format("svg");
 }
 
 
@@ -12,7 +14,7 @@ html, body {
 	margin: auto;
 	background-color: black;
 	
-	font-family: "Minecraft Font";
+	font-family: "Minecraft";
 
 	background-image: url("../images/background_title.png");
 	background-repeat: repeat;
@@ -35,17 +37,18 @@ html, body {
 p, a, label {
 	color: white;
 	text-decoration: none;
-	font-size: 16pt;
+	font-size: 14pt;
 }
 
 
 /* Title and splash text */
 #title {
-	text-align: center;
-	font-size: 54pt;
-	margin-top: 128px;
-	margin-bottom: 0;
-	padding-bottom: 0;
+	display: block;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	image-rendering: crisp-edges;
 }
 
 @keyframes splashTextBounce {
@@ -59,8 +62,8 @@ p, a, label {
 
 #splash {
 	position: relative;
-	left: 170px;
-	top: 20px;
+	left: 270px;
+	top: 30px;
 
 	margin-top: 5px;
 	margin-bottom: 172px;
@@ -69,6 +72,7 @@ p, a, label {
 	text-align: center;
 	text-shadow: 0px 0px 5px black;
 	
+	font-size: 14pt;
 	color: yellow;
 	
 	animation-name: splashTextBounce;
@@ -85,8 +89,8 @@ p, a, label {
 }
 
 .minecraft-button {
-	font-family: "Minecraft Font";
-	font-size: 16pt;
+	font-family: "Minecraft";
+	font-size: 14pt;
 	color:white;
 	text-decoration: none;
 
@@ -116,7 +120,7 @@ p, a, label {
 	position: absolute;
 	bottom: 0;
 	text-align: center;
-	font-size: 12pt;
+	font-size: 10pt;
 	margin-left: 25px;
 }
 
@@ -147,11 +151,11 @@ p, a, label {
 	width: 40%;
 	
 	text-align: center;
+	font-size: 12pt;
 }
 
 .modal-content-title {
-	font-size: 28pt;
-	font-weight: bold;
+	font-size: 20pt;
 }
 
 .modal-content-close {
@@ -201,7 +205,7 @@ p, a, label {
 /* Create a custom checkbox */
 .checkmark {
 	position: absolute;
-	top: 0;
+	top: 2px;
 	left: -30px;
 	height: 20px;
 	width: 20px;

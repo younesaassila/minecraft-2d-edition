@@ -1,9 +1,11 @@
 @font-face {
-    font-family: 'Minecraft Font';
-    src: url('../fonts/minecraft-webfont.woff2') format('woff2'),
-         url('../fonts/minecraft-webfont.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
+	font-family: "Minecraft";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/minecraft_font.eot") format("eot"), 
+	     url("../fonts/minecraft_font.woff") format("woff"), 
+	     url("../fonts/minecraft_font.ttf") format("truetype"), 
+	     url("../fonts/minecraft_font.svg#Minecraft") format("svg");
 }
 
 body {
@@ -26,8 +28,8 @@ td > img:hover {
 }
 
 #playerPosition {
-	font-family: "Minecraft Font";
-	font-size: 16pt;
+	font-family: "Minecraft";
+	font-size: 14pt;
 	color:white;
 	background-color: rgba(0, 0, 0, 0.4);
 	position: absolute;

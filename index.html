@@ -7,10 +7,11 @@
 	</head>
 	<body>
 		<div id="main-container">
-			<!-- Background music audio source -->
-			<audio id="audioSource" autoplay loop src="audio/menu_screen.mp3"></audio>
+			<!-- Audio source used for playing background music -->
+			<audio id="audio"></audio>
 			<!-- Title and splash text -->
-			<p id="title">Minecraft</p>
+			<!--<p id="title">Minecraft</p>-->
+			<img id="title" src="images/gui/minecraft.png" ondragstart="return false;"/>
 			<div id="splash-container">
 				<p id="splash">missingno</p>
 			</div>
@@ -56,7 +57,8 @@
 			<p id="copyright">&copy; 2019 Younes Aassila. Not affiliated with Mojang AB or Microsoft Inc.</p>
 		</div>
 		<!-- Scripts -->
-		<script src="js/splashes.js"></script>
-		<script src="js/menu_screen.js"></script>
+		<script src="js/audio_manager.js"></script>
+		<script src="js/menu_screen/splashes.js"></script>
+		<script src="js/menu_screen/menu_screen.js"></script>
 	</body>
 </html>
