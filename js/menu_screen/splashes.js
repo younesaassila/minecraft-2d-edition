@@ -4,9 +4,7 @@ const splashes = [
 	"Steve?",
 	"2D EDITION!",
 	"Perlin Noise Certified!",
-	"Made by Younes!",
 	"Blocks everywhere!",
-	"Hi, how may I help you?",
 	"Minecraft DD!",
 	"Minceraft!",
 	"Time to mine!",
@@ -18,15 +16,18 @@ const splashes = [
 	"Open your eyes...",
 	"It's-a-me!",
 	"Woohoo!",
-	"Writing this on September 6 2019",
 	"Howdy?",
 	"Happy new year!",
 	"10^100 it!",
-	"Stack Overflow",
-	"This text should appear very long on your screen because of its length being very big!",
-	"Playing on my 4K 144Hz monitor!",
+	"Stack Overflow!",
+	"This text should appear very big on your screen because of its length being very long!",
+	"Playing on my 144Hz monitor!",
 	"Whaaat?",
-	"Music by C418"
+	"Music by C418!",
+	"undefined!",
+	"JavaScript, also known as Java for short...",
+	"I don't know why but it works",
+	"Random splash text"
 ]
 
 function getSplashText(index = null) {
