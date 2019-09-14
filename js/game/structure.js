@@ -3,8 +3,7 @@ class Structure {
 		/**
 		 * @param x Coordinate origin (X Axis)
 		 * @param y Coordinate origin (Y Axis)
-		 * @param structure_blocks
-		 Blocks from which the structure is composed
+		 * @param structure_blocks Blocks from which the structure is composed
 		 * Blocks is a two dimensional array used as:
 		 * 	[Block Type, ~X, ~Y]
 		 */

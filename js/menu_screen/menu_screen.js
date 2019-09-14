@@ -25,9 +25,10 @@ splash.innerHTML = getSplashText();
 // Starts the game by changing the browser's location and sending query parameters.
 function play() {
 	var mapMode = document.getElementById("options-map-mode").checked;
+	var creativeMode = document.getElementById("options-creative-mode").checked;
 	var debugMode = document.getElementById("options-debug-mode").checked;
 
-	location.href = `game.html?map=${mapMode}&debug=${debugMode}`;
+	location.href = `game.html?map=${mapMode}&creative=${creativeMode}&debug=${debugMode}`;
 }
 
 //#region Options's Modal view

@@ -3,9 +3,7 @@ const splashes = [
 	"Experience the new dimension!",
 	"Steve?",
 	"2D EDITION!",
-	"Perlin Noise Certified!",
 	"Blocks everywhere!",
-	"Minecraft DD!",
 	"Minceraft!",
 	"Time to mine!",
 	"The cake is an unavailable item",
@@ -26,8 +24,12 @@ const splashes = [
 	"Music by C418!",
 	"undefined!",
 	"JavaScript, also known as Java for short...",
-	"I don't know why but it works",
-	"Random splash text"
+	"I don't know why but it works!",
+	"Random Splash Text",
+	"It's A Hard-Knock Life!",
+	"AZERTY",
+	"Compatible with Mozilla Firefox!",
+	"You're not a real gamer unless you play on Internet Explorer!"
 ]
 
 function getSplashText(index = null) {

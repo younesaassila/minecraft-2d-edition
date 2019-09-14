@@ -17,6 +17,8 @@ var playerHeight = 2;
 var playerX = parseInt(Math.random() * (worldWidth - playerWidth));
 var playerY = 62;
 
+var creative = parameters.get('creative') === 'true' || false;
+
 // Adjusting the y coordinate location by looking for the first suitable spot
 // at x coordinate starting from the bottom.
 for (var y = 0; y < world.blocks[playerX].length; y++) {
@@ -29,7 +31,7 @@ for (var y = 0; y < world.blocks[playerX].length; y++) {
 	}
 }
 
-var player = new Player(playerX, playerY, playerWidth, playerHeight);
+var player = new Player(playerX, playerY, playerWidth, playerHeight, creative);
 
 //#endregion
 
@@ -79,33 +81,62 @@ window.addEventListener("keydown", function (event) {
 		// Do nothing if the event was already processed
 		return;
 	}
-	
+
 	switch (event.key) {
-	  	case "ArrowDown":
+		case "ArrowDown":
 			// Move down
-			player.move(0, -1, viewfinder, world);
+			player.move(0, -1);
 			viewfinder.draw();
 			break;
-	  	case "ArrowUp":
+		case "ArrowUp":
 			// Move up
-			player.move(0, 1, viewfinder, world);
+			player.move(0, 1);
 			viewfinder.draw();
 			break;
-	  	case "ArrowLeft":
+		case "ArrowLeft":
 			// Move left
-			player.move(-1, 0, viewfinder, world);
+			player.move(-1, 0);
 			viewfinder.draw();
 			break;
-	  	case "ArrowRight":
+		case "ArrowRight":
 			// Move right
-			player.move(1, 0, viewfinder, world);
+			player.move(1, 0);
 			viewfinder.draw();
 			break;
-	  	default:
+		default:
 			// Quit when this doesn't handle the key event.
 			return;
 	}
-  
+
 	// Cancel the default action to avoid it being handled twice
 	event.preventDefault();
-  }, true);
+}, true);
+
+//#region Play background music
+
+const audioSource = document.getElementById("audio");
+const tracks = [
+	"audio/game/clark.mp3",
+	"audio/game/danny.mp3",
+	"audio/game/haggstorm.mp3",
+	"audio/game/living_mice.mp3",
+	"audio/game/mice_on_venus.mp3",
+	"audio/game/moog_city.mp3",
+	"audio/game/subwoofer_lullaby.mp3",
+	"audio/game/sweden.mp3",
+]
+
+// Create an audio manager and play a random track.
+var audioManager = new AudioManager(audioSource, tracks);
+audioManager.setVolume(0.7);
+audioManager.setLoop(true);
+audioManager.play();
+
+//#endregion
+
+//#region Block destruction values
+
+var destructionBlock;
+var destructionTimer;
+
+//#endregion

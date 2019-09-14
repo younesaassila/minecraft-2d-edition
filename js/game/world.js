@@ -47,7 +47,7 @@ class World {
 					this.blocks[x][y] = new Bedrock(x, y);
 				} else if (y <= stoneHeight) {
 					this.blocks[x][y] = new Stone(x, y);
-				} else if (y <= 62) {
+				} else if (y <= 61) {
 					this.blocks[x][y] = new Water(x, y);
 				} else {
 					this.blocks[x][y] = new Air(x, y);

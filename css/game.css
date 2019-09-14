@@ -16,17 +16,6 @@ body {
 	background-repeat: repeat;
 }
 
-td {
-	z-index: 0;
-}
-
-td > img:hover {
-	outline-style: solid;
-	outline-color: rgba(0, 0, 0, 0.4);
-	outline-width: 1px;
-	outline-offset: -1px;
-}
-
 #playerPosition {
 	font-family: "Minecraft";
 	font-size: 14pt;
@@ -35,5 +24,29 @@ td > img:hover {
 	position: absolute;
 	left: 20px;
 	padding: 5px;
+	z-index: 1;
+}
+
+td {
+	z-index: 0;
+}
+
+td > .img-interactable:hover {
+	outline-style: solid;
+	outline-color: rgba(0, 0, 0, 0.4);
+	outline-width: 1px;
+	outline-offset: -1px;
+}
+
+.div-destroy-stage-position {
+	position: relative;
+	height: 0px;
+	width: 0px;
+}
+
+.img-destroy-stage {
+	position: absolute;
+	left: 0px;
+	top: 0px;
 	z-index: 1;
 }
