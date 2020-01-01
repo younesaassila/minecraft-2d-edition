@@ -58,3 +58,11 @@ function hideAbout() {
 }
 
 //#endregion
+
+// Update version text.
+let version = document.querySelector("#version");
+version.innerHTML = "Version 1.0/dev";
+
+// Update copyright information.
+let copyright = document.querySelector("#copyright");
+copyright.innerHTML = `© ${new Date().getFullYear()} Younes Aassila. Not affiliated with Mojang AB or Microsoft Inc.`;

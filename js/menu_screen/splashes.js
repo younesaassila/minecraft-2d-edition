@@ -1,35 +1,26 @@
 const splashes = [
 	"Now in 2D!",
 	"Experience the new dimension!",
-	"Steve?",
 	"2D EDITION!",
+	"HTML TABLE EDITION!",
 	"Blocks everywhere!",
+	"Blocky bois!",
 	"Minceraft!",
 	"Time to mine!",
-	"The cake is an unavailable item",
-	"Pshhh... Boom!",
-	"Creeper? Aw man!",
+	"The cake is an unavailable item.",
+	"Bim bam boom!",
+	"Creeper? Aww man!",
 	"Night time is a myth!",
-	"Blocky bois!",
 	"Open your eyes...",
 	"It's-a-me!",
 	"Woohoo!",
-	"Howdy?",
-	"Happy new year!",
-	"10^100 it!",
+	"What's up?",
 	"Stack Overflow!",
-	"This text should appear very big on your screen because of its length being very long!",
-	"Playing on my 144Hz monitor!",
-	"Whaaat?",
 	"Music by C418!",
-	"undefined!",
 	"JavaScript, also known as Java for short...",
 	"I don't know why but it works!",
-	"Random Splash Text",
 	"It's A Hard-Knock Life!",
-	"AZERTY",
-	"Compatible with Mozilla Firefox!",
-	"You're not a real gamer unless you play on Internet Explorer!"
+	"You're a real gamer!"
 ]
 
 function getSplashText(index = null) {
@@ -38,7 +29,13 @@ function getSplashText(index = null) {
 	&& !(typeof splashes[index] === 'undefined')) {
 		return splashes[index];
 	} else {
-		var random = Math.floor(Math.random() * splashes.length);
+		// Return 'Happy new year!' if the date is January 1st.
+		const date = new Date();
+		if (date.getDate() == 1 && date.getMonth() == 0) {
+			return "Happy new year!";
+		}
+		// Otherwise, return a random splash text.
+		const random = Math.floor(Math.random() * splashes.length);
 		return splashes[random];
 	}
 }
