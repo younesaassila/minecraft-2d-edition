@@ -145,7 +145,7 @@ footer {
 @keyframes modalContentZoomIn {
 	from {
 		opacity: 0;
-		transform: scale(0.97, 0.97);
+		transform: scale(0.95, 0.95);
 	}
 	to {
 		opacity: 1;
