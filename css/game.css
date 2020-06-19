@@ -27,6 +27,18 @@ body {
 	z-index: 1;
 }
 
+#currentTime {
+	font-family: "Minecraft";
+	font-size: 14pt;
+	color:white;
+	background-color: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	left: 20px;
+	top: 50px;
+	padding: 5px;
+	z-index: 1;
+}
+
 td {
 	z-index: 0;
 }

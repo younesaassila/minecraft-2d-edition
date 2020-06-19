@@ -106,8 +106,8 @@ class Viewfinder {
 					var topCell = this.cells[(this.rows - 1) - y - 1][x];
 					var bottomCell = this.cells[(this.rows - 1) - y][x];
 	
-					topCell.style.backgroundColor = this.noTexture ? player.color : "#3BB9FF";
-					bottomCell.style.backgroundColor = this.noTexture ? player.color : "#3BB9FF";
+					topCell.style.backgroundColor = this.noTexture ? player.color : world.skyColor;
+					bottomCell.style.backgroundColor = this.noTexture ? player.color : world.skyColor;
 
 					if ((player.topTexture != null)
 					&& (player.bottomTexture != null)
@@ -126,7 +126,7 @@ class Viewfinder {
 	 * @param {*} block 
 	 */
 	setBlock(cell, block) {
-		cell.style.backgroundColor = this.noTexture ? block.color : '#3BB9FF';
+		cell.style.backgroundColor = this.noTexture ? block.color : world.skyColor;
 
 		if ((block.texture != null) && !(this.noTexture)) {
 			var interactable = false;
@@ -178,6 +178,22 @@ class Viewfinder {
 		image.style.top = "0px";
 		
 		image.style.display = "block";
+
+		const getSkyColor = (red1, green1, blue1, red2, green2, blue2, time) => {
+			var diffRed = red2 - red1;
+			var diffGreen = green2 - green1;
+			var diffBlue = blue2 - blue1;
+
+			const percentage = ((time % 6000) / 6000);
+
+			let red = (diffRed * percentage) + red1;
+			let green = (diffGreen * percentage) + green1;
+			let blue = (diffBlue * percentage) + blue1;
+
+			return `rgb(${red},${green},${blue})`;
+		}
+
+		image.style.filter = `brightness(${world.blockBrightness})`;
 		
 		image.ondragstart = function() { return false; };
 
@@ -232,6 +248,8 @@ class Viewfinder {
 		image.style.width = `${this.width / this.cols}px`;
 		image.style.height = `${this.height / this.rows}px`;
 		image.style.imageRendering = 'crisp-edges';
+
+		image.style.filter = `brightness(${world.blockBrightness})`;
 
 		image.addEventListener('mouseup', e => {
 			// When the player releases the left button, cancel the block's destruction.

@@ -10,7 +10,6 @@ const splashes = [
 	"The cake is an unavailable item.",
 	"Bim bam boom!",
 	"Creeper? Aww man!",
-	"Night time is a myth!",
 	"Open your eyes...",
 	"It's-a-me!",
 	"Woohoo!",

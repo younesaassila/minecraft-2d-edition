@@ -3,6 +3,10 @@ class World {
 		this.width = width;
 		this.height = height;
 
+		this.time = 1000;
+		this.skyColor = "#3bb9ff";
+		this.blockBrightness = "100%";
+
 		this.generate();
 	}
 
@@ -135,5 +139,43 @@ class World {
 				}
 			}
 		}
+	}
+
+	update = () => {
+		//#region Time
+
+		const currentTime = document.querySelector("#currentTime");
+
+		this.time += 1;
+		currentTime.innerHTML = `Time: ${this.time}`;
+
+		if (this.time > 12_000) {
+			// Night time!
+			//this.skyColor = "#030303";
+		}
+
+		if (this.time >= 24_000) {
+			// Day time!
+			this.time = 0;
+		}
+
+		//#endregion
+
+		//#region Block Brightness
+
+		const maxBrightness = 100;
+		const minBrightness = 40;
+
+		// Returns a number between -1 and 1.
+		const getBrightnessValue = (time) => {
+			return (((Math.sin((Math.PI / 2) * Math.cos(((time / 12_000) - (1/2)) * Math.PI))) + 1) / 2) * (maxBrightness - minBrightness) + minBrightness;
+		}
+
+		this.blockBrightness = `${getBrightnessValue(this.time)}%`;
+
+		//#endregion
+
+		// Update the viewfinder.
+		viewfinder.draw();
 	}
 }

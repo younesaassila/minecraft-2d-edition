@@ -73,6 +73,9 @@ if (parameters.get('map') === 'true') {
 
 //#endregion
 
+// Update the game 20 frames per second.
+setInterval(world.update, 50); // 20 ticks per second => 50 ms.
+
 // Disable context menu.
 window.oncontextmenu = function () { return false; }
 

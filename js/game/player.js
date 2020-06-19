@@ -72,7 +72,6 @@ class Player {
 		&& (world.blocks[this.x][this.y + gravityForce] instanceof Air)) {
 			window.setTimeout(function() {
 				player.gravity(gravityForce);
-				viewfinder.draw();
 			}, 400);
 		}
 
