@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="css/menu_screen.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="css/menu_screen.css" rel="stylesheet" />
     <title>Minecraft: 2D EDITION</title>
   </head>
   <body>
@@ -13,7 +13,11 @@
       <audio id="audio"></audio>
       <!-- Header (Contains: Minecraft Logo, Splash Text) -->
       <header>
-        <img id="title" src="images/gui/minecraft.png" ondragstart="return false;" />
+        <img
+          id="title"
+          src="images/gui/minecraft.png"
+          ondragstart="return false;"
+        />
         <p id="splash">missingno</p>
       </header>
       <!-- Menu Buttons -->
@@ -29,21 +33,26 @@
           <button onclick="hideOptions()" class="modal-content-close">×</button>
           <!-- Modal's title -->
           <p class="modal-content-title">Options</p>
-          <!-- Set the game mode to Creative -->
-          <label class="label-container" style="color: lightcyan;">Set the game mode to Creative
-            <input type="checkbox" id="options-creative-mode">
-            <span class="checkmark"></span>
-          </label>
-          <!-- Display the entire map in the viewfinder -->
-          <label class="label-container" style="color: lightcyan;">Display the entire map in the viewfinder
-            <input type="checkbox" id="options-map-mode">
-            <span class="checkmark"></span>
-          </label>
-          <!-- Enable debug mode (very experimental!) -->
-          <label class="label-container" style="color: lightcyan;">Enable debug mode (very experimental!)
-            <input type="checkbox" id="options-debug-mode">
-            <span class="checkmark"></span>
-          </label>
+          <div class="options-list">
+            <!-- Set the game mode to Creative -->
+            <label class="label-container" style="color: lightcyan"
+              >Set the game mode to Creative
+              <input type="checkbox" id="options-creative-mode" />
+              <span class="checkmark"></span>
+            </label>
+            <!-- Display the entire map in the viewfinder -->
+            <label class="label-container" style="color: lightcyan"
+              >Display the entire map in the viewfinder
+              <input type="checkbox" id="options-map-mode" />
+              <span class="checkmark"></span>
+            </label>
+            <!-- Enable debug mode (very experimental!) -->
+            <label class="label-container" style="color: lightcyan"
+              >Enable debug mode (very experimental!)
+              <input type="checkbox" id="options-debug-mode" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
         </div>
       </div>
       <!-- About Modal -->
@@ -54,11 +63,17 @@
           <!-- Modal's title -->
           <p class="modal-content-title">About</p>
           <!-- Modal's content -->
-          <p style="color: lightgreen;">Minecraft: 2D EDITION is a project I made for experimenting with JavaScript and
-            having fun!</p>
-          <p style="color: lightskyblue;">This project is not affiliated in any way with Mojang AB or Microsoft Inc.</p>
-          <p style="color: lightsalmon;">This game was made by Younes Aassila (@Yougi3 on GitHub). Thank you for
-            playing!</p>
+          <p style="color: lightgreen">
+            Minecraft: 2D EDITION is a project I made for experimenting with
+            JavaScript and having fun!
+          </p>
+          <p style="color: lightskyblue">
+            This project is not affiliated with Mojang AB or Microsoft Inc.
+          </p>
+          <p style="color: lightsalmon">
+            This game was made by Younes Aassila (@younesaassila on GitHub).
+            Thank you for playing!
+          </p>
         </div>
       </div>
       <!-- Footer (Contains: Game's Version, Game's Copyright Information) -->
